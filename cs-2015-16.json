@@ -1,0 +1,54 @@
+{
+  "name": "NUS Computer Science Cohort 2015/16",
+  "magic": 102383781,
+  "version": "0.1.0",
+  "requirements": [
+    {
+      "title": "University Level Requirements",
+      "requirements": null
+    },
+    {
+      "title": "Unrestricted Electives",
+      "requirements": null
+    },
+    {
+      "title": "Programme Requirements",
+      "subsections": [
+        {
+          "title": "Computer Science Foundation",
+          "mcs": 36,
+          "requirements": {
+            "operator": "AND",
+            "operands": [
+              {
+                "title": "CS Foundation Modules (intro)",
+                "req-type": "take-one",
+                "modules": ["CS1010", "CS1101S"]
+              },
+              { 
+                "operator": "OR",
+                "operands": [
+                  {
+                    "title": "CS Foundation Data Structure (2 mods)",
+                    "req-type": "take-all",
+                    "modules": ["CS1020", "CS2010"]
+                  },
+                  {
+                    "title": "CS Foundation Data Structure (1 mod)",
+                    "req-type": "take-all",
+                    "modules": ["CS2020"]
+                  }
+                ]
+              },
+              {
+                "title": "CS Foundation Modules (standard)",
+                "req-type": "take-all",
+                "modules": ["CS1231", "CS2100", "CS2103T", "CS2105", "CS2106", "CS3230"]
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}
