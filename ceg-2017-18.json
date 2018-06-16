@@ -1,0 +1,48 @@
+{
+  "name": "NUS Computer Science Cohort 2015/16",
+  "magic": 102383781,
+  "version": "0.1.0",
+  "sections": [
+    {
+      "title": "University Level Requirements",
+      "requirements": null
+    },
+    {
+      "title": "Unrestricted Electives",
+      "requirements": null
+    },
+    {
+      "title": "Core Modules",
+      "requirements": [
+        {
+          "operator": "AND",
+          "operands": [
+            {
+              "title": "CEG Core",
+              "req-type": "take-all",
+              "modules": [
+                "CG1111", "CG1112", "CS1010", "CS1231", "MA1511", "MA1512", "MA1508E",
+                "CG2023", "CG2027", "CG2028", "CG2271", "CS2040C", "CS2101", "CS2113T",
+                "EE2026", "EG2401A", "ST2334", "CG4002", "EE4204"
+              ]
+            },
+            {
+              "title": "CEG Optional 3K",
+              "req-type": "take-one",
+              "modules": ["CG3207", "CS3230"]
+            },
+            {
+              "title": "CEG Internship",
+              "req-type": "take-one",
+              "modules": ["CP3880", "EG3611A"]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "CEG Technical Electives",
+      "requirements": null
+    }
+  ]
+}

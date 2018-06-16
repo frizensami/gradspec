@@ -2,7 +2,7 @@
   "name": "NUS Computer Science Cohort 2015/16",
   "magic": 102383781,
   "version": "0.1.0",
-  "requirements": [
+  "sections": [
     {
       "title": "University Level Requirements",
       "requirements": null

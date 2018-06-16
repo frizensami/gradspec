@@ -20,7 +20,7 @@ Fields that **must** be present:
 The body section of the JSON object describes the actual course graduation requirements. 
 
 Fields that must be present:
-1. **requirements**: A list of **Section** objects
+1. **sections**: A list of **Section** objects
 
 ### Syntactical Structure for GRADSPEC in JSON
 The header and body together form a basic JSON structure:
