@@ -13,7 +13,7 @@
     },
     {
       "title": "Core Modules",
-      "requirements": [
+      "requirements": 
         {
           "operator": "AND",
           "operands": [
@@ -38,7 +38,6 @@
             }
           ]
         }
-      ]
     },
     {
       "title": "CEG Technical Electives",
