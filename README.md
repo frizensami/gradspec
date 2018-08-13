@@ -1,5 +1,7 @@
 # Graduation Requirements Specification Language (GRADSPEC)
 
+Status: WORK IN PROGRESS. Not able to describe MCs moving between sections due to certain conditional requirements: see CS 2015/16 Cohort. 
+
 An attempt to describe graduation requirements in a standard format for courses in the National University of Singapore.
 
 ## Format
