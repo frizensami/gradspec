@@ -52,10 +52,11 @@ Fields that must be present:
 This is a **collection of Requirement/Requirements** objects that are semantically linked with **AND/OR/null logical operators**. 
 
 Fields that must be present:
+1. **name**: A descriptor for this set of requirements
 1. **operator**: String that can only take on the values (case-sensitive) "AND"/"OR"/"null"
-2. **operands**: A Javascript array that can have values with one of three different types
+2. **operands**: A Javascript array that can have values that may take any of these three different types
     - **Requirement** object: explained further down - this is the core type that describes the modules that need to be taken.
-    - **File** string: A path to another GRADSPEC file 
+    - **File** object: A path to another GRADSPEC file 
     - **Requirements** object: Another set of operator and operands.
 
 **Requirement** objects can be combined by **AND** combinators or **OR** combinators just like any normal boolean expression. If neither are necessary, the `null` combinator can be used, but the operand list must only have at most 1 requirement.
@@ -72,11 +73,12 @@ For example, if we have **Requirement** objects `r1`, `r2` and `r3`, we could ha
     "magic": 102383781,
     "version": "0.1.0",
     "requirements": 
-        { 
-            "operator": "or", 
+        {
+            "name": "CS Core Requirements",
+            "operator": "OR", 
             "operands": [
                 {
-                    "operator": "and", 
+                    "operator": "AND", 
                     "operands": [r1, r2]
                 }, 
                 r3]
@@ -86,7 +88,7 @@ For example, if we have **Requirement** objects `r1`, `r2` and `r3`, we could ha
 This describes the requirement: `(r1 AND r2) OR r3`
 
 
-### Requirement
+### Requirement Object Type
 This is a particular number/combination of module requirements.
 
 Fields that must be present for all subtypes:
@@ -218,4 +220,59 @@ A null requirement is something that is always satisfied. Can be used as a place
     "req-type": "null"
 }
 ```
+
+### File Object Type
+Indicates another GRADSPEC file is to be included as a set of requirements to be fulfilled in the current place. 
+
+Fields that must be present:
+1. **filepath**: A string defining the path to the GRADSPEC file to be parsed
+
+```javascript
+{
+    "name": "NUS Bachelor of Computing, Computer Science, Cohort 2015/16",
+    "magic": 102383781,
+    "version": "0.1.0",
+    "requirements": 
+        { 
+            "name": "Testing Included Filepaths",
+            "operator": "OR", 
+            "operands": [{"filepath": "../common/option1.json"}, {"filepath": "./option2.json"}]
+        }
+}
+```
+
+#### Parsing rules for GRADSPEC file inclusion
+If a GRADSPEC file is included into another GRADSPEC file using the File Object type as shown in the example above, certain rules must be followed. 
+
+If `../common/option1.json` is:
+```javascript
+{
+    "name": "Included Requirement File #1",
+    "magic": 102383781,
+    "version": "0.1.0",
+    "requirements": 
+        { 
+            "name": "Included Requirements #1",
+            "operator": "null", 
+            "operands": {...}
+        }
+}
+```
+
+Then:
+```javascript
+"operands": [{"filepath": "../common/option1.json"}, ...
+```
+
+Should become:
+```javascript
+"operands": [{"name": "Included Requirements #1", "operator": "null", "operands": {...}}, ...]
+```
+
+i.e. **The contents of the `requirements` field should entirely replace the File Object in the parent GRADSPEC document**.
+
+
+
+
+**NOTE: Circular inclusions of GRADSPEC files are considered UNDEFINED BEHAVIOR**. Parsers are to exit with errors when such a case is encountered.
 
